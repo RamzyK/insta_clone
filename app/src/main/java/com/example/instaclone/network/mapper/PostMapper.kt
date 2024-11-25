@@ -18,11 +18,11 @@ fun mapPostDtoToPostModel(dto: PostDto): Post {
         } ?: listOf(),
         content = dto.content,
         likes = dto.likes,
-        post_id = dto.post_id,
-        profile_picture = dto.profile_picture,
+        post_id = dto.postId,
+        profile_picture = dto.profilePicture,
         shares = dto.shares,
         timestamp = dto.timestamp,
-        user_id = dto.user_id,
+        user_id = dto.userId,
         username = dto.username
     )
 }
