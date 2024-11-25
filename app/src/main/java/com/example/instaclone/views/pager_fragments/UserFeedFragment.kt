@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -15,6 +16,9 @@ import com.example.instaclone.data.model.posts.Post
 import com.example.instaclone.data.model.story.Story
 import com.example.instaclone.pages.interfaces.PagerHandler
 import com.example.instaclone.pages.interfaces.StoryClickHandler
+import com.example.instaclone.repositories.GlobalDataRepository
+import com.example.instaclone.viewmodel.HomeFeedViewModel
+import com.example.instaclone.viewmodel.factories.HomeFeedViewModelFactory
 import com.example.instaclone.views.recycler_view_adapters.home_adapters.PostsRvAdapter
 import com.example.instaclone.views.recycler_view_adapters.home_adapters.StoryRvAdapter
 
@@ -24,6 +28,10 @@ class UserFeedFragment : Fragment(), StoryClickHandler {
     private lateinit var postsRv: RecyclerView
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
     private lateinit var _pagerHandler: PagerHandler
+
+    private val homeFeedViewModel: HomeFeedViewModel by viewModels {
+        HomeFeedViewModelFactory(GlobalDataRepository(), this)
+    }
 
     companion object {
         fun newInstance(pageHandler: PagerHandler): UserFeedFragment {
@@ -48,7 +56,6 @@ class UserFeedFragment : Fragment(), StoryClickHandler {
 
         fetchData(view)
         setUpSwipeToRefreshListeners()
-        setUpReloadDataViews(view)
     }
 
     private fun setUpStoriesRv(stories: List<Story>, fragmentView: View) {
@@ -82,9 +89,12 @@ class UserFeedFragment : Fragment(), StoryClickHandler {
     }
 
     private fun fetchData(fragmentView: View) {
+        homeFeedViewModel.globalData.observe(viewLifecycleOwner) { data ->
+            setUpPostsRv(getUserFeedPosts(data), fragmentView)
+            this.swipeRefreshLayout.isRefreshing = false
+        }
 
-        setUpPostsRv(listOf(), fragmentView)
-        setUpStoriesRv(listOf(), fragmentView)
+        homeFeedViewModel.fetchGlobalData()
     }
 
     private fun getUserFeedStories(data: GlobalDataModel): List<Story> {
@@ -104,10 +114,9 @@ class UserFeedFragment : Fragment(), StoryClickHandler {
     }
 
     private fun setUpSwipeToRefreshListeners() {
-
+        this.swipeRefreshLayout.setOnRefreshListener {
+            this.homeFeedViewModel.fetchGlobalData()
+        }
     }
 
-    private fun setUpReloadDataViews(fragmentView: View) {
-
-    }
 }
