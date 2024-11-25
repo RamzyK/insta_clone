@@ -19,11 +19,40 @@ class PostsRvAdapter(val posts: List<Post>): RecyclerView.Adapter<PostsRvViewHol
     }
 
     override fun getItemCount(): Int {
-        return 10 //posts.size
+        return posts.size
     }
 
     @RequiresApi(Build.VERSION_CODES.S)
     override fun onBindViewHolder(holder: PostsRvViewHolder, position: Int) {
+        val postData = this.posts[position]
 
+        //holder.postUserInfoCardView.setRenderEffect(RenderEffect.createBlurEffect(20f, 20f, Shader.TileMode.DECAL))
+        // Binder le VH et le model
+        Glide
+            .with(holder.itemView)
+            .load("https://robohash.org/${postData.username}")
+            .into(holder.postImageView);
+
+        Glide
+            .with(holder.itemView)
+            .load("https://robohash.org/${postData.user_id}")
+            .into(holder.postUserProfilePicImageView);
+
+        holder.postLikesTextView.text = postData.likes.toString()
+        holder.postCommentsTextView.text = (postData.comments?.size ?: 0).toString()
+        holder.postSharesTextView.text = postData.shares.toString()
+        holder.postUserNameTextView.text = postData.username
+        holder.postUserPseudoTextView.text = postData.user_id
+        holder.postCommentTextView.text = postData.caption
+
+        holder.postLikesImageView.setOnClickListener {
+            Log.d("Post like button", "Post liked")
+        }
+        holder.postCommentsImageView.setOnClickListener {
+            Log.d("Post like button", "Post commented")
+        }
+        holder.postSharesImageView.setOnClickListener {
+            Log.d("Post like button", "Post shared")
+        }
     }
 }
