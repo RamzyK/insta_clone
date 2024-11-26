@@ -5,15 +5,24 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.dymagram.viewmodel.factories.HomeFeedViewModelFactory
 import com.example.instaclone.R
 import com.example.instaclone.data.model.messages.Message
+import com.example.instaclone.repositories.MessagesRepository
+import com.example.instaclone.viewmodel.MessagesViewModel
+import com.example.instaclone.viewmodel.factories.DirectMessagesViewModelFactory
 import com.example.instaclone.views.recycler_view_adapters.dm_adapters.DirectMessagesRvAdapter
 
 class DirectMessagesFragment : Fragment() {
 
     private lateinit var messagesRv: RecyclerView
+
+    private val messagesViewModel: MessagesViewModel by viewModels {
+        DirectMessagesViewModelFactory(MessagesRepository(), this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,7 +46,11 @@ class DirectMessagesFragment : Fragment() {
     }
 
     private fun fetchData(fragmentView: View) {
-        setUpDmRv(listOf(), fragmentView)
+        this.messagesViewModel.messagesData.observe(viewLifecycleOwner) { messages ->
+            setUpDmRv(messages, fragmentView)
+        }
+
+        this.messagesViewModel.fetchMessages()
     }
 
 }

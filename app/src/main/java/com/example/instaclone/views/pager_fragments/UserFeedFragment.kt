@@ -18,7 +18,7 @@ import com.example.instaclone.data.model.story.Story
 import com.example.instaclone.pages.interfaces.PagerHandler
 import com.example.instaclone.pages.interfaces.StoryClickHandler
 import com.example.instaclone.repositories.GlobalDataRepository
-import com.example.instaclone.viewmodel.factories.HomeFeedViewModel
+import com.example.instaclone.viewmodel.HomeFeedViewModel
 import com.example.instaclone.views.recycler_view_adapters.home_adapters.PostsRvAdapter
 import com.example.instaclone.views.recycler_view_adapters.home_adapters.StoryRvAdapter
 

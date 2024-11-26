@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.instaclone.repositories.GlobalDataRepository
-import com.example.instaclone.viewmodel.factories.HomeFeedViewModel
+import com.example.instaclone.viewmodel.HomeFeedViewModel
 
 class HomeFeedViewModelFactory(
     private val repository: GlobalDataRepository,

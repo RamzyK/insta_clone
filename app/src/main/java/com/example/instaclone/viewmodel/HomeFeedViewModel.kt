@@ -1,4 +1,4 @@
-package com.example.instaclone.viewmodel.factories
+package com.example.instaclone.viewmodel
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
