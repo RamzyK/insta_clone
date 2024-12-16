@@ -32,6 +32,7 @@ class MessagesRepository {
 
                 this@MessagesRepository._messagesData.value = body?.map {
                     mapMessageDtoToMessageModel(it)
+                    // Implementer une logique de sauvegarde des données avant de renvoyer la donnée à la vue
                 }
             }
 

@@ -3,6 +3,7 @@ package com.example.instaclone.db.dao
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import com.example.instaclone.db.entities.PostsEntities
@@ -20,7 +21,7 @@ interface PostsDao {
     fun addPost(post: PostsEntities)
 
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addPosts(posts: List<PostsEntities>)
 
 }

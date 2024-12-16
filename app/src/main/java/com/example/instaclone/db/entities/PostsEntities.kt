@@ -7,7 +7,7 @@ import com.example.instaclone.data.model.posts.Comment
 
 @Entity("posts")
 data class PostsEntities(
-    @PrimaryKey(autoGenerate = true) val uid: Int = 3,
+    @PrimaryKey(autoGenerate = true) val uid: Int = 0,
 
     @ColumnInfo val caption: String,
     @ColumnInfo val likes: Int,
