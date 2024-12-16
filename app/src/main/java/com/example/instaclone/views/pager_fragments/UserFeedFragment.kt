@@ -1,5 +1,7 @@
 package com.example.instaclone.views.pager_fragments
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.instaclone.R
+import com.example.instaclone.app_utils.SHARED_PREF_KEY
 import com.example.instaclone.data.model.GlobalDataModel
 import com.example.instaclone.data.model.posts.Post
 import com.example.instaclone.data.model.story.Story
@@ -29,6 +32,9 @@ class UserFeedFragment : Fragment(), StoryClickHandler {
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
     private lateinit var _pagerHandler: PagerHandler
 
+
+    private lateinit var sharedPref: SharedPreferences
+
     private val homeFeedViewModel: HomeFeedViewModel by viewModels {
         HomeFeedViewModelFactory(GlobalDataRepository(), this)
     }
@@ -46,8 +52,16 @@ class UserFeedFragment : Fragment(), StoryClickHandler {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        this.sharedPref = requireActivity().getSharedPreferences(SHARED_PREF_KEY, Context.MODE_PRIVATE)
+
+        if(sharedPref.getString("TOKEN", "")!!.isEmpty()){
+            // Pas de token de connexion ---> Rediriger vers l'écran de login
+        }
+
         val view = inflater.inflate(R.layout.fragment_user_feed, container, false)
         this.swipeRefreshLayout = view.findViewById(R.id.home_fragment_swipe_refresh_layout)
+
+
         return view
     }
 
@@ -89,11 +103,13 @@ class UserFeedFragment : Fragment(), StoryClickHandler {
     }
 
     private fun fetchData(fragmentView: View) {
+        // La vue s'abonne à la réponse
         homeFeedViewModel.globalData.observe(viewLifecycleOwner) { data ->
             setUpPostsRv(getUserFeedPosts(data), fragmentView)
             this.swipeRefreshLayout.isRefreshing = false
         }
 
+        // La vue demande de la donnée
         homeFeedViewModel.fetchGlobalData()
     }
 
