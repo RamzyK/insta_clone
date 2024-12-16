@@ -1,5 +1,7 @@
 package com.example.instaclone.views.pager_fragments
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.dymagram.viewmodel.factories.HomeFeedViewModelFactory
 import com.example.instaclone.R
+import com.example.instaclone.SHARED_PREFS_KEY_NAME
 import com.example.instaclone.data.model.GlobalDataModel
 import com.example.instaclone.data.model.posts.Post
 import com.example.instaclone.data.model.story.Story
@@ -29,8 +32,10 @@ class UserFeedFragment : Fragment(), StoryClickHandler {
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
     private lateinit var _pagerHandler: PagerHandler
 
+    private lateinit var sharedPref: SharedPreferences
+
     private val homeFeedViewModel: HomeFeedViewModel by viewModels {
-        HomeFeedViewModelFactory(GlobalDataRepository(), this)
+        HomeFeedViewModelFactory(GlobalDataRepository(requireContext()), this)
     }
 
     companion object {
@@ -45,6 +50,16 @@ class UserFeedFragment : Fragment(), StoryClickHandler {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // Récup des hared prefs
+        this.sharedPref = this.requireActivity().getSharedPreferences(SHARED_PREFS_KEY_NAME, Context.MODE_PRIVATE)
+        this.sharedPref.all.keys.contains("")
+
+        val userNameSharedPref = sharedPref.getString("USER_NAME", "User") ?: ""
+
+        if (userNameSharedPref.isEmpty()) {
+            // Redirige vers un écran de connexion
+        }
+
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_user_feed, container, false)
         this.swipeRefreshLayout = view.findViewById(R.id.home_fragment_swipe_refresh_layout)
