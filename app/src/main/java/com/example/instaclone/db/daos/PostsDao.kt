@@ -17,7 +17,7 @@ interface PostsDao {
 
 
     @Insert
-    fun addPosts(posts: List<PostEntity>)
+    suspend fun addPosts(posts: List<PostEntity>)
 
     @Delete
     fun removePost(post: PostEntity)

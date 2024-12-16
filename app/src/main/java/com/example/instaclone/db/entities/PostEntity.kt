@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "posts")
 data class PostEntity(
     @PrimaryKey(autoGenerate = true)
-    val postId: Int,
+    val postId: Int = 0,
 
     @ColumnInfo val caption: String,
     val likes: Int,

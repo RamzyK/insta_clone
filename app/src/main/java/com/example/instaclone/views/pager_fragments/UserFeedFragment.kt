@@ -36,7 +36,7 @@ class UserFeedFragment : Fragment(), StoryClickHandler {
     private lateinit var sharedPref: SharedPreferences
 
     private val homeFeedViewModel: HomeFeedViewModel by viewModels {
-        HomeFeedViewModelFactory(GlobalDataRepository(), this)
+        HomeFeedViewModelFactory(GlobalDataRepository(this.requireContext()), this)
     }
 
     companion object {
