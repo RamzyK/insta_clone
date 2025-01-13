@@ -24,6 +24,7 @@ import com.example.instaclone.viewmodel.HomeFeedViewModel
 import com.example.instaclone.viewmodel.factories.HomeFeedViewModelFactory
 import com.example.instaclone.views.recycler_view_adapters.home_adapters.PostsRvAdapter
 import com.example.instaclone.views.recycler_view_adapters.home_adapters.StoryRvAdapter
+import org.koin.android.ext.android.inject
 
 class UserFeedFragment : Fragment(), StoryClickHandler {
 
@@ -35,9 +36,7 @@ class UserFeedFragment : Fragment(), StoryClickHandler {
 
     private lateinit var sharedPref: SharedPreferences
 
-    private val homeFeedViewModel: HomeFeedViewModel by viewModels {
-        HomeFeedViewModelFactory(GlobalDataRepository(this.requireContext()), this)
-    }
+    private val homeFeedViewModel: HomeFeedViewModel by viewModels()
 
     companion object {
         fun newInstance(pageHandler: PagerHandler): UserFeedFragment {

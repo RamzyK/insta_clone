@@ -20,9 +20,9 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class GlobalDataRepository(context: Context) {
+class GlobalDataRepository(context: Context, val globalDataService: GlobalDataService) {
 
-    private val globalDataService = RetrofitClient.instance.create(GlobalDataService::class.java)
+    //private val globalDataService = RetrofitClient.instance.create(GlobalDataService::class.java)
 
     private val _globalData = MutableLiveData<GlobalDataModel>()
 

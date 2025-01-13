@@ -8,8 +8,8 @@ import com.example.instaclone.data.model.GlobalDataModel
 import com.example.instaclone.repositories.GlobalDataRepository
 
 class HomeFeedViewModel(
-    private val globalDataRepo: GlobalDataRepository,
-    val context: LifecycleOwner
+    val context: LifecycleOwner,
+    private val globalDataRepo: GlobalDataRepository
 ): ViewModel() {
 
     private val _globalData = MutableLiveData<GlobalDataModel>()
