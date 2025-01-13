@@ -19,10 +19,13 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class GlobalDataRepository(context: Context) {
+class GlobalDataRepository(context: Context,
+                           private val globalDataService: GlobalDataService) {
 
     // Service pour récupérer le JSON
-    private val globalDataService = RetrofitClient.instance.create(GlobalDataService::class.java)
+
+
+    // private val globalDataService = RetrofitClient.instance.create(GlobalDataService::class.java)
 
 
     // Observables pour notifier le repository

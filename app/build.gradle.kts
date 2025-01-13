@@ -78,4 +78,7 @@ dependencies {
     ksp(libs.androidx.room.compiler)
 
     implementation(libs.androidx.room.ktx)
+
+    // KOIN - DI
+    implementation(libs.insert.koin.koin.core)
 }
