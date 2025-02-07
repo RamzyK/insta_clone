@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -68,4 +70,15 @@ dependencies {
     // ASYNC
     implementation(libs.koin.core)
     implementation(libs.koin.android)
+
+    // ROOM DB
+
+    implementation(libs.androidx.room.runtime)
+
+    ksp(libs.androidx.room.compiler)
+
+    implementation(libs.androidx.room.ktx)
+
+    // KOIN - DI
+    implementation(libs.insert.koin.koin.core)
 }

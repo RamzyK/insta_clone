@@ -1,9 +1,8 @@
-package com.example.dymagram.network.mapper
+package com.example.instaclone.network.mapper
 
 import com.example.instaclone.data.model.posts.Comment
 import com.example.instaclone.data.model.posts.Post
 import com.example.instaclone.network.dto.posts_dto.PostDto
-
 
 fun mapPostDtoToPostModel(dto: PostDto): Post {
     return Post(
@@ -18,11 +17,11 @@ fun mapPostDtoToPostModel(dto: PostDto): Post {
         } ?: listOf(),
         content = dto.content,
         likes = dto.likes,
-        post_id = dto.postId,
-        profile_picture = dto.profilePicture,
+        post_id = dto.post_id,
+        profile_picture = dto.profile_picture,
         shares = dto.shares,
         timestamp = dto.timestamp,
-        user_id = dto.userId,
+        user_id = dto.user_id,
         username = dto.username
     )
 }

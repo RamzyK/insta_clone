@@ -1,4 +1,5 @@
-package com.example.dymagram.network.mapper
+package com.example.instaclone.network.mapper
+
 
 import com.example.instaclone.data.model.story.Story
 import com.example.instaclone.data.model.story.StoryContent

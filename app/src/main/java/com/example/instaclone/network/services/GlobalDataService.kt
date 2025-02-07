@@ -6,6 +6,7 @@ import retrofit2.http.GET
 
 interface GlobalDataService {
 
+
     @GET("RamzyK/demo/db")
-    fun getGetAllData(): Call<GlobalModelDto>
+    fun getAllData(): Call<GlobalModelDto>
 }

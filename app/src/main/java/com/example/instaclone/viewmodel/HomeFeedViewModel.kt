@@ -8,19 +8,19 @@ import com.example.instaclone.data.model.GlobalDataModel
 import com.example.instaclone.repositories.GlobalDataRepository
 
 class HomeFeedViewModel(
-    private val globalDataRepo: GlobalDataRepository,
+    val globalDataRepository: GlobalDataRepository,
     val context: LifecycleOwner
 ): ViewModel() {
 
+    // Observables pour notifier la view
     private val _globalData = MutableLiveData<GlobalDataModel>()
-
     val globalData: LiveData<GlobalDataModel> get() = _globalData
 
-    fun fetchGlobalData() {
-        this.globalDataRepo.globalData.observe(this.context) { data ->
+    fun fetchAllData() {
+        this.globalDataRepository.globalData.observe(context) { data ->
             this@HomeFeedViewModel._globalData.value = data
         }
 
-        this.globalDataRepo.getAllData()
+        this.globalDataRepository.getData()
     }
 }

@@ -1,9 +1,9 @@
-package com.example.dymagram.network.mapper
-
+package com.example.instaclone.network.mapper
 
 import com.example.instaclone.data.model.messages.Message
 import com.example.instaclone.data.model.messages.MessageX
 import com.example.instaclone.network.dto.messages_dto.MessageDto
+
 
 fun mapMessageDtoToMessageModel(dto: MessageDto): Message {
     return Message(

@@ -1,4 +1,4 @@
-package com.example.instaclone.viewmodel.factories
+package com.example.dymagram.viewmodel.factories
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
