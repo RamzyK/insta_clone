@@ -8,7 +8,6 @@ import androidx.room.Room
 import com.example.instaclone.data.model.GlobalDataModel
 import com.example.instaclone.db.AppDatabase
 import com.example.instaclone.db.entities.PostsEntities
-import com.example.instaclone.network.RetrofitClient
 import com.example.instaclone.network.dto.GlobalModelDto
 import com.example.instaclone.network.mapper.mapGlobalDataDtoToGlobalDataModel
 import com.example.instaclone.network.services.GlobalDataService
