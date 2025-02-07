@@ -12,7 +12,9 @@ import retrofit2.Call
 import retrofit2.Response
 import org.mockito.Mockito.`when`
 import org.junit.Assert.assertTrue
+import org.mockito.kotlin.doReturn
 import kotlin.random.Random
+
 
 class DirectMessageServiceTest {
 
@@ -42,10 +44,12 @@ class DirectMessageServiceTest {
         // when(mockMessageCall.execute()).then-return(Response.success(mockedResponseBody))
 
         // Observe le trigger call sur la résponse du service
-        `when`(mockMessageCall.execute()).thenReturn(Response.success(mockedResponseBody))
+        doReturn(Response.success(mockedResponseBody)).`when`(mockMessageCall.execute())
+        //`when`(mockMessageCall.execute()).thenReturn(Response.success(mockedResponseBody))
 
         // Observe le trigger call sur le service
-        `when`(mockMessagesService.getAllMessages()).thenReturn(mockMessageCall)
+        //`when`(mockMessagesService.getAllMessages()).thenReturn(mockMessageCall)
+        doReturn(mockMessageCall).`when`(mockMessagesService.getAllMessages())
 
         // Appel du service pour récupérer tous les message
         val response =  mockMessagesService.getAllMessages().execute()
