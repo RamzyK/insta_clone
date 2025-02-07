@@ -2,14 +2,12 @@ package com.example.instaclone.repositories
 
 import android.content.Context
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.room.Room
 import com.example.instaclone.data.model.GlobalDataModel
 import com.example.instaclone.db.AppDatabase
 import com.example.instaclone.db.entities.PostEntity
-import com.example.instaclone.network.RetrofitClient
 import com.example.instaclone.network.dto.GlobalModelDto
 import com.example.instaclone.network.mapper.mapGlobalDataDtoToGlobalDataModel
 import com.example.instaclone.network.services.GlobalDataService
@@ -20,9 +18,10 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class GlobalDataRepository(context: Context, val globalDataService: GlobalDataService) {
-
-    //private val globalDataService = RetrofitClient.instance.create(GlobalDataService::class.java)
+class GlobalDataRepository(
+    context: Context,
+    private val globalDataService: GlobalDataService
+) {
 
     private val _globalData = MutableLiveData<GlobalDataModel>()
 

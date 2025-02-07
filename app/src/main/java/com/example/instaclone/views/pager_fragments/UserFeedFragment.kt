@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -19,12 +18,10 @@ import com.example.instaclone.data.model.posts.Post
 import com.example.instaclone.data.model.story.Story
 import com.example.instaclone.pages.interfaces.PagerHandler
 import com.example.instaclone.pages.interfaces.StoryClickHandler
-import com.example.instaclone.repositories.GlobalDataRepository
 import com.example.instaclone.viewmodel.HomeFeedViewModel
-import com.example.instaclone.viewmodel.factories.HomeFeedViewModelFactory
 import com.example.instaclone.views.recycler_view_adapters.home_adapters.PostsRvAdapter
 import com.example.instaclone.views.recycler_view_adapters.home_adapters.StoryRvAdapter
-import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class UserFeedFragment : Fragment(), StoryClickHandler {
 
@@ -36,7 +33,7 @@ class UserFeedFragment : Fragment(), StoryClickHandler {
 
     private lateinit var sharedPref: SharedPreferences
 
-    private val homeFeedViewModel: HomeFeedViewModel by viewModels()
+    private val homeFeedViewModel: HomeFeedViewModel by viewModel()
 
     companion object {
         fun newInstance(pageHandler: PagerHandler): UserFeedFragment {

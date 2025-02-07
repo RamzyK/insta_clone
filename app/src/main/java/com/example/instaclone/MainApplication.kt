@@ -1,10 +1,13 @@
 package com.example.instaclone
 
 import android.app.Application
+import android.content.Context
+import androidx.lifecycle.LifecycleOwner
 import com.example.instaclone.di.appModule
 import com.example.instaclone.di.remoteModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.GlobalContext.startKoin
+import org.koin.dsl.module
 
 class MainApplication : Application() {
 
@@ -17,10 +20,9 @@ class MainApplication : Application() {
             androidContext(this@MainApplication)
 
             // Load modules
-            modules(listOf(
-                appModule,
-                remoteModule
-            ))
+            modules(appModules)
         }
     }
 }
+
+var appModules = mutableListOf(appModule, remoteModule)
