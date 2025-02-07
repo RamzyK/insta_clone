@@ -15,6 +15,9 @@ junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 
+mockitoCore = "5.2.0"
+mockitoKotlin = "4.1.0"
+
 glide = "4.16.0"
 koinAndroid = "4.0.0"
 
@@ -47,6 +50,10 @@ koin-core = { module = "io.insert-koin:koin-core", version.ref = "koinAndroid" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+
+# Tests
+mockito-kotlin = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "mockitoKotlin" }
+mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockitoCore" }
 
 # Network
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }

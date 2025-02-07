@@ -75,8 +75,8 @@ class EmailValidatorTest {
 
     @Test
     fun `corporate email should return true`() {
-        assertTrue(validator.isCorporateEmail("employee@company.com"))
-        assertTrue(validator.isCorporateEmail("staff@enterprise.org"))
+        assertTrue(validator.isCorporateEmail("employee@sncf.com"))
+        assertTrue(validator.isCorporateEmail("staff@sncf.org"))
     }
 
     @Test

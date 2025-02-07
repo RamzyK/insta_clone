@@ -18,7 +18,7 @@ class EmailValidator {
     }
 
     fun isCorporateEmail(email: String): Boolean {
-        return email.endsWith("@sncf.fr") || email.endsWith("@sncf.com")
+        return email.endsWith("@sncf.fr") || email.endsWith("@sncf.com") || email.endsWith("@sncf.org")
     }
 
     fun isGmailAddress(email: String): Boolean {
