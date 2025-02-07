@@ -26,7 +26,7 @@ lifecycleViewmodelKtx = "2.8.6"
 
 # NETWORK
 okhttp = "4.12.0"
-retrofit = "2.9.0"
+retrofit = "2.10.0"
 roomRuntime = "2.6.1"
 swiperefreshlayout = "1.2.0-alpha01"
 
